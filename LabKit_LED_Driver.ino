@@ -7,7 +7,7 @@
 // ----------------------
 
 #define LED_PIN 5
-#define AD_INPUT 28 
+#define AD_INPUT A5 //28 
 
 
 
@@ -60,9 +60,13 @@ void loop() {
   #endif
 
   #ifdef USE_AD_BOX
-    if(digitalRead(AD_INPUT)){ 
+    if(digitalRead(AD_INPUT)){   
       analogWrite(LED_PIN, rotaryCount); // Turn On LED if AD Box has signaled active
+    }else
+    {
+      analogWrite(LED_PIN, 0); //Trun off LED
     }
+    
   #else
     analogWrite(LED_PIN, rotaryCount); // Turn On LED
   #endif
@@ -173,4 +177,3 @@ void AddCount(int num)
 
   rotaryCount = sudoCount / offset;
 }
-
